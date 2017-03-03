@@ -52,7 +52,7 @@ BACKUP_NAME="ghost-backup-"${DATE}""
 
 cd "${UPDATE_TMP}"
 mkdir "${BACKUP_NAME}"
-curl -s "${GHOST_EXPORT_URL}"?access_token="${GHOST_TOCKEN}" -o /tmp/ghost-backup-"${DATE}"/data.json
+curl -s "${GHOST_EXPORT_URL}"?access_token="${GHOST_TOCKEN}" -o "${UPDATE_TMP}"/ghost-backup-"${DATE}"/data.json
 
 cp "${GHOST_PATH}"/config.js "${BACKUP_NAME}"/config.js
 cp -r "${GHOST_PATH}"/content "${BACKUP_NAME}"/content
@@ -92,6 +92,6 @@ chown -R ghost:ghost * #Update permissions
 ${GHOST_RESTART} > /dev/null # Restart Ghost
 
 DATE=$(date "+%y/%m/%d %T")
-echo "${DATE} Update successed. From "${LOCAL_VERSION}" to "${REMOTE_VERSION}"."
+echo ""${DATE}" Update successed. From "${LOCAL_VERSION}" to "${REMOTE_VERSION}"."
 
 exit 0
